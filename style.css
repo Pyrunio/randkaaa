@@ -1,0 +1,305 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #fff0f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .bukiet {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .flower {
+    position: relative;
+    width: 120px;
+    height: 120px;
+  }
+  
+  .petal {
+    width: 50px;
+    height: 50px;
+    background-color: #fbb1d2;
+    position: absolute;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  .petal:nth-child(1) { top: 0; left: 35px; }
+  .petal:nth-child(2) { top: 35px; left: 0; }
+  .petal:nth-child(3) { top: 35px; left: 70px; }
+  .petal:nth-child(4) { top: 70px; left: 35px; }
+  
+  .center {
+    width: 40px;
+    height: 40px;
+    background: #ffe600;
+    border-radius: 50%;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
+  
+  .stem {
+    position: absolute;
+    width: 8px;
+    height: 60px;
+    background-color: #7dd181;
+    top: 100px;
+    left: 56px;
+    z-index: 0;
+  }
+  
+  #headerImage img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(255, 179, 243, 0.5);
+    margin-bottom: 20px;
+  }
+  
+  #wheel {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 10px solid white;
+    box-shadow: 0 0 20px rgba(255, 179, 243, 0.4);
+    background: conic-gradient(
+      red 0% 16.6%, orange 16.6% 33.2%, yellow 33.2% 49.8%,
+      green 49.8% 66.4%, blue 66.4% 83%, violet 83% 100%
+    );
+    margin: 20px 0;
+    transition: transform 2.5s ease-out;
+    position: relative;
+  }
+  
+  .label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    transform-origin: center center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px;
+    pointer-events: none;
+    text-shadow:
+      -1px -1px 0 #000,
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000;
+  }
+  
+  #spinBtn, #drinkBtn, #importantBtn {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 15px;
+    background-color: #ffb3f3;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(255, 179, 243, 0.4);
+    transition: transform 0.2s ease;
+  }
+  
+  #spinBtn:hover,
+  #drinkBtn:hover,
+  #importantBtn:hover {
+    transform: scale(1.05);
+  }
+  
+  #resultCard {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px 30px;
+    border: 2px solid black;
+    font-size: 20px;
+    text-align: center;
+    display: none;
+    z-index: 100;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    color: #333;
+  }
+  
+  #importantBtn {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  .confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #ffb3f3;
+    animation: confetti-fall 3s linear forwards;
+    z-index: 999;
+  }
+  
+  @keyframes confetti-fall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+  
+  .heart {
+    position: fixed;
+    top: -50px;
+    font-size: 30px;
+    color: pink;
+    animation: fall 5s linear infinite;
+  }
+  
+  @keyframes fall {
+    to {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+  
+  #loveLetter {
+    display: none;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff0f5;
+    border: 3px solid #000;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    z-index: 1000;
+  }
+  
+  #closeLetter {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: #000;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 2px 8px;
+    cursor: pointer;
+  }
+  
+  #flowerPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff0f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #flowerPageInner {
+    background-color: #fff0f5;
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(255, 179, 243, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #flowerPage .flower {
+    position: relative;
+    width: 100px;
+    height: 140px;
+    margin-bottom: 20px;
+  }
+  
+  #flowerPage .petal {
+    width: 40px;
+    height: 40px;
+    background-color: #fbb1d2;
+    position: absolute;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  #flowerPage .petal1 { top: 0; left: 30px; }
+  #flowerPage .petal2 { top: 30px; left: 0; }
+  #flowerPage .petal3 { top: 30px; left: 60px; }
+  #flowerPage .petal4 { top: 60px; left: 30px; }
+  
+  #flowerPage .center {
+    width: 30px;
+    height: 30px;
+    background: #ffe600;
+    border-radius: 50%;
+    position: absolute;
+    top: 35px;
+    left: 35px;
+  }
+  
+  #flowerPage .stem {
+    position: absolute;
+    width: 6px;
+    height: 50px;
+    background-color: #7dd181;
+    top: 90px;
+    left: 47px;
+    z-index: 0;
+  }
+  
+  #flowerPassword {
+    margin: 10px 0 5px 0;
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+    width: 85%;
+    max-width: 300px;
+    background-color: #fff0f5;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 0 10px rgba(255, 179, 243, 0.4);
+  }
+  
+  #flowerButton {
+    margin: 5px 0 0 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffb3f3;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 179, 243, 0.4);
+  }
+  
+  #errorMsg {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  

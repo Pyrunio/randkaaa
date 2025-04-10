@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Jakie piciu?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #e0f7fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 30px 10px;
+      font-family: sans-serif;
+    }
+
+    .bottle-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+      width: 100%;
+    }
+
+    .bottle {
+      position: relative;
+      width: 100px;
+      height: 70px;
+      background: #b3e5fc;
+      border: 2px solid #000;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .cap {
+      position: absolute;
+      top: -35px;
+      left: 20px;
+      width: 60px;
+      height: 30px;
+      background: #0288d1;
+      border: 2px solid #000;
+      border-radius: 8px;
+    }
+
+    .bottle.shake {
+      animation: shake 0.5s ease-in-out 4;
+    }
+
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      50% { transform: rotate(10deg); }
+      75% { transform: rotate(-10deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .bubble {
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bubble 1.8s ease-out forwards;
+      z-index: 4;
+    }
+
+    @keyframes bubble {
+      0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+      100% { transform: translateX(-50%) translateY(-250px); opacity: 0; }
+    }
+
+    #drinkImage {
+      margin-top: 30px;
+      display: none;
+      max-width: 160px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .bottle {
+        width: 120px;
+        height: 70px;
+        font-size: 18px;
+      }
+
+
+      #drinkImage {
+        max-width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bottle-container">
+    <div class="bottle" id="bottle">
+      <div class="cap"></div>
+      Click me
+    </div>
+  </div>
+
+  <img id="drinkImage" src="picie1.png" alt="Picie">
+
+  <script>
+    const bottle = document.getElementById('bottle');
+    const drinkImage = document.getElementById('drinkImage');
+
+    bottle.onclick = () => {
+      bottle.classList.add('shake');
+
+      for (let i = 0; i < 40; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.style.left = (50 + (Math.random() * 20 - 10)) + '%';
+        bottle.appendChild(bubble);
+        setTimeout(() => bubble.remove(), 1800);
+      }
+
+      setTimeout(() => {
+        bottle.classList.remove('shake');
+        drinkImage.style.display = 'block';
+        const drinks = ['colcka.jpg', 'pomarnczasoczek.jpg', 'herbatka.jpg', 'liptonek.jpg'];
+        drinkImage.src = drinks[Math.floor(Math.random() * drinks.length)];
+
+      }, 2000);
+    };
+  </script>
+</body>
+</html>

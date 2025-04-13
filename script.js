@@ -37,17 +37,32 @@ if (spinBtn && wheel) {
     createConfetti(60);
   };
 }
+function createConfetti(amount = 30, intervalTime = 50) {
+  let created = 0;
+  const confettiInterval = setInterval(() => {
+    if (created >= amount) {
+      clearInterval(confettiInterval);
+      return;
+    }
+    created++;
 
-function createConfetti(amount = 30) {
-  for (let i = 0; i < amount; i++) {
     const confetti = document.createElement('div');
     confetti.className = 'confetti';
     confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+    confetti.style.top = '0px';
+    confetti.style.width = '10px';
+    confetti.style.height = '10px';
+    confetti.style.position = 'absolute';
+    confetti.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    confetti.style.borderRadius = '50%';
+    confetti.style.animation = 'fall 3s linear';
+    confetti.style.zIndex = 9999;
+
     document.body.appendChild(confetti);
     setTimeout(() => confetti.remove(), 3000);
-  }
+  }, intervalTime);
 }
+
 
 function startHeartShower() {
   heartInterval = setInterval(() => {

@@ -49,13 +49,14 @@ function createConfetti(amount = 30, intervalTime = 50) {
     const confetti = document.createElement('div');
     confetti.className = 'confetti';
     confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.top = '0px';
-    confetti.style.width = '10px';
-    confetti.style.height = '10px';
-    confetti.style.position = 'absolute';
+    confetti.style.top = `${Math.random() * -100}px`;
+    confetti.style.width = `${6 + Math.random() * 10}px`;
+    confetti.style.height = `${6 + Math.random() * 10}px`;
+    confetti.style.position = 'fixed';
     confetti.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    confetti.style.borderRadius = '50%';
-    confetti.style.animation = 'fall 3s linear';
+    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+    confetti.style.animation = 'confetti-fall 3s linear forwards';
     confetti.style.zIndex = 9999;
 
     document.body.appendChild(confetti);
